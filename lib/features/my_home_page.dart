@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         extendBody: true,
         bottomNavigationBar: DotNavigationBar(
           marginR: EdgeInsets.only(bottom: 20, left: 50, right: 50),
-          backgroundColor: isDarkMode ? Color(0xFF17313E) : Color(0xFFBBDCE5),
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
           // backgroundColor: Colors.red,
           paddingR: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           enablePaddingAnimation: false,
