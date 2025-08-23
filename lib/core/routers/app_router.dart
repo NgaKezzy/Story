@@ -1,0 +1,121 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:story/common/domain/entities/response/movie_data.dart';
+import 'package:story/core/di/di.dart';
+import 'package:story/features/auth/cubit/auth_cubit.dart';
+import 'package:story/features/auth/login_screen.dart';
+import 'package:story/features/auth/register_screen.dart';
+import 'package:story/features/home/models/param_movie_list_page.dart';
+import 'package:story/features/home/view/movie_list_page.dart';
+import 'package:story/features/home/view/watch_movie_screen.dart';
+import 'package:story/features/movie/cubit/movie_cubit.dart';
+import 'package:story/features/my_home_page.dart';
+import 'package:story/features/onboarding/onboarding_provider/onboarding_provider.dart';
+import 'package:story/features/setting/movie_history_page.dart';
+import 'package:story/features/splash/splash_page.dart';
+
+class AppRouteConstant {
+  AppRouteConstant._();
+
+  static const String initial = '/';
+  static const String onboardingPage = '/onboarding-page';
+  static const String loginScreen = '/login-screen';
+  static const String register = '/register';
+  static const String myHomePage = '/my-home-page';
+  static const String watchMovie = '/watch-movie';
+  static const String movieHistory = '/movie-history';
+  static const String movieListPage = '/movie-list-page';
+
+  // Nested Key
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
+}
+
+class AppRoutes {
+  static final AppRoutes _singleton = AppRoutes._internal();
+
+  factory AppRoutes() {
+    return _singleton;
+  }
+
+  AppRoutes._internal();
+
+  /// Khai báo các màn hình mới tại đây
+  GoRouter router = GoRouter(
+    initialLocation: AppRouteConstant.initial,
+    navigatorKey: AppRouteConstant.navigatorKey,
+    routes: <RouteBase>[
+      GoRoute(
+        path: AppRouteConstant.initial,
+        builder: (BuildContext context, GoRouterState state) {
+          return BlocProvider.value(
+            value: getIt.get<AuthCubit>(),
+
+            child: SplashPage(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRouteConstant.loginScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return BlocProvider.value(
+            value: getIt.get<AuthCubit>(),
+            child: LoginScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRouteConstant.register,
+        builder: (BuildContext context, GoRouterState state) {
+          return BlocProvider.value(
+            value: getIt.get<AuthCubit>(),
+            child: RegisterScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRouteConstant.myHomePage,
+        builder: (BuildContext context, GoRouterState state) {
+          return MyHomePage();
+        },
+      ),
+      GoRoute(
+        path: AppRouteConstant.watchMovie,
+        builder: (BuildContext context, GoRouterState state) {
+          return BlocProvider.value(
+            value: getIt.get<MovieCubit>(),
+            child: WatchMovieScreen(
+              movie: state.extra is Movie ? state.extra as Movie : Movie(),
+            ),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppRouteConstant.movieHistory,
+        builder: (BuildContext context, GoRouterState state) {
+          return BlocProvider.value(
+            value: getIt.get<MovieCubit>(),
+            child: MovieHistoryPage(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppRouteConstant.movieListPage,
+        builder: (BuildContext context, GoRouterState state) {
+          return BlocProvider.value(
+            value: getIt.get<MovieCubit>(),
+            child: MovieListPage(
+              param:
+                  state.extra is ParamMovieListPage
+                      ? state.extra as ParamMovieListPage
+                      : ParamMovieListPage(title: '', movies: []),
+            ),
+          );
+        },
+      ),
+    ],
+  );
+}
