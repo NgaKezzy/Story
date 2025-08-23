@@ -33,8 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final language = AppLocalizations.of(context);
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return PopScope(
       canPop: true,
@@ -44,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         extendBody: true,
         bottomNavigationBar: DotNavigationBar(
           marginR: EdgeInsets.only(bottom: 20, left: 50, right: 50),
+          backgroundColor: isDarkMode ? Color(0xFF17313E) : Color(0xFFBBDCE5),
           // backgroundColor: Colors.red,
           paddingR: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           enablePaddingAnimation: false,
