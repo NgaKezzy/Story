@@ -9,10 +9,9 @@ part of 'movie_search.dart';
 MovieSearch _$MovieSearchFromJson(Map<String, dynamic> json) => MovieSearch(
   status: json['status'] as String?,
   msg: json['msg'] as String?,
-  data:
-      json['data'] == null
-          ? null
-          : MovieData.fromJson(json['data'] as Map<String, dynamic>),
+  data: json['data'] == null
+      ? null
+      : MovieData.fromJson(json['data'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$MovieSearchToJson(MovieSearch instance) =>

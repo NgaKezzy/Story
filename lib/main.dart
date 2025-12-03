@@ -1,4 +1,4 @@
-import 'package:alice/alice.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +13,7 @@ import 'package:story/core/routers/app_router.dart';
 import 'package:story/core/theme/app_theme.dart';
 import 'package:story/core/theme/cubit/theme_cubit.dart';
 import 'package:toastification/toastification.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:story/core/language/l10n/app_localizations.dart';
 
 enum BuildFlavor { dev, staging, production }
 
@@ -35,18 +35,11 @@ void main() async {
 
   await dotenv.load(fileName: '.env');
 
-  final baseUrl =
-      appFlavor == BuildFlavor.production
-          ? dotenv.env['BASE_URL_PROD']
-          : dotenv.env['BASE_URL_DEV'];
+  final baseUrl = appFlavor == BuildFlavor.production
+      ? dotenv.env['BASE_URL_PROD']
+      : dotenv.env['BASE_URL_DEV'];
 
-  final Alice alice = Alice(
-    showInspectorOnShake: true,
-    showNotification: false,
-    navigatorKey: AppRouteConstant.navigatorKey,
-  );
-
-  await setup(baseUrl.toString(), alice);
+  await setup(baseUrl.toString());
 
   runApp(
     MultiBlocProvider(
@@ -86,10 +79,9 @@ class MyApp extends StatelessWidget {
               locale: Locale(context.watch<LanguageCubit>().state.languageCode),
               debugShowCheckedModeBanner: false,
               routerConfig: AppRoutes().router,
-              theme:
-                  context.watch<ThemeCubit>().state.isDark
-                      ? AppTheme.darkTheme
-                      : AppTheme.lightTheme,
+              theme: context.watch<ThemeCubit>().state.isDark
+                  ? AppTheme.darkTheme
+                  : AppTheme.lightTheme,
             ),
           ),
         );

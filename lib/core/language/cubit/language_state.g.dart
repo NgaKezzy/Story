@@ -9,16 +9,18 @@ part of 'language_state.dart';
 abstract class _$LanguageStateCWProxy {
   LanguageState languageCode(String languageCode);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LanguageState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LanguageState(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// LanguageState(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   LanguageState call({String languageCode});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLanguageState.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfLanguageState.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfLanguageState.copyWith(...)` or call `instanceOfLanguageState.copyWith.fieldName(value)` for a single field.
 class _$LanguageStateCWProxyImpl implements _$LanguageStateCWProxy {
   const _$LanguageStateCWProxyImpl(this._value);
 
@@ -26,28 +28,30 @@ class _$LanguageStateCWProxyImpl implements _$LanguageStateCWProxy {
 
   @override
   LanguageState languageCode(String languageCode) =>
-      this(languageCode: languageCode);
+      call(languageCode: languageCode);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LanguageState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LanguageState(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// LanguageState(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   LanguageState call({Object? languageCode = const $CopyWithPlaceholder()}) {
     return LanguageState(
       languageCode:
-          languageCode == const $CopyWithPlaceholder()
-              ? _value.languageCode
-              // ignore: cast_nullable_to_non_nullable
-              : languageCode as String,
+          languageCode == const $CopyWithPlaceholder() || languageCode == null
+          ? _value.languageCode
+          // ignore: cast_nullable_to_non_nullable
+          : languageCode as String,
     );
   }
 }
 
 extension $LanguageStateCopyWith on LanguageState {
-  /// Returns a callable class that can be used as follows: `instanceOfLanguageState.copyWith(...)` or like so:`instanceOfLanguageState.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfLanguageState.copyWith(...)` or `instanceOfLanguageState.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$LanguageStateCWProxy get copyWith => _$LanguageStateCWProxyImpl(this);
 }

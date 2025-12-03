@@ -9,14 +9,12 @@ part of 'movie_info.dart';
 MovieInfo _$MovieInfoFromJson(Map<String, dynamic> json) => MovieInfo(
   status: json['status'] as bool?,
   msg: json['msg'] as String?,
-  movie:
-      json['movie'] == null
-          ? null
-          : Movie.fromJson(json['movie'] as Map<String, dynamic>),
-  episodes:
-      (json['episodes'] as List<dynamic>?)
-          ?.map((e) => Episode.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  movie: json['movie'] == null
+      ? null
+      : Movie.fromJson(json['movie'] as Map<String, dynamic>),
+  episodes: (json['episodes'] as List<dynamic>?)
+      ?.map((e) => Episode.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$MovieInfoToJson(MovieInfo instance) => <String, dynamic>{
@@ -28,10 +26,9 @@ Map<String, dynamic> _$MovieInfoToJson(MovieInfo instance) => <String, dynamic>{
 
 Episode _$EpisodeFromJson(Map<String, dynamic> json) => Episode(
   serverName: json['serverName'] as String?,
-  serverData:
-      (json['server_data'] as List<dynamic>?)
-          ?.map((e) => ServerData.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  serverData: (json['server_data'] as List<dynamic>?)
+      ?.map((e) => ServerData.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$EpisodeToJson(Episode instance) => <String, dynamic>{

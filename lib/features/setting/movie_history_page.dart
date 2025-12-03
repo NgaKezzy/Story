@@ -6,7 +6,7 @@ import 'package:story/common/widgets/loading/loading_component.dart';
 import 'package:story/core/di/di.dart';
 import 'package:story/features/movie/cubit/movie_cubit.dart';
 import 'package:story/features/movie/cubit/movie_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:story/core/language/l10n/app_localizations.dart';
 
 class MovieHistoryPage extends StatelessWidget {
   const MovieHistoryPage({super.key});
@@ -52,15 +52,13 @@ class MovieHistoryPage extends StatelessWidget {
                                 child: CachedNetworkImage(
                                   imageUrl:
                                       state.movieHistory[index].fullThumbUrl,
-                                  errorWidget:
-                                      (context, url, error) =>
-                                          Center(child: Icon(Icons.warning)),
-                                  placeholder:
-                                      (context, url) => Container(
-                                        color: Colors.transparent,
-                                        alignment: Alignment.center,
-                                        child: LoadingComponent(),
-                                      ),
+                                  errorWidget: (context, url, error) =>
+                                      Center(child: Icon(Icons.warning)),
+                                  placeholder: (context, url) => Container(
+                                    color: Colors.transparent,
+                                    alignment: Alignment.center,
+                                    child: LoadingComponent(),
+                                  ),
                                   fit: BoxFit.cover,
                                 ),
                               ),

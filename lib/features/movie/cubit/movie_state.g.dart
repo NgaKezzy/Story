@@ -21,12 +21,13 @@ abstract class _$MovieStateCWProxy {
 
   MovieState movieCartoon(List<Movie> movieCartoon);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MovieState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `MovieState(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// MovieState(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   MovieState call({
     List<Movie> newMovieList,
     MovieInfo? movieInfo,
@@ -38,7 +39,8 @@ abstract class _$MovieStateCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfMovieState.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfMovieState.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfMovieState.copyWith(...)` or call `instanceOfMovieState.copyWith.fieldName(value)` for a single field.
 class _$MovieStateCWProxyImpl implements _$MovieStateCWProxy {
   const _$MovieStateCWProxyImpl(this._value);
 
@@ -46,38 +48,39 @@ class _$MovieStateCWProxyImpl implements _$MovieStateCWProxy {
 
   @override
   MovieState newMovieList(List<Movie> newMovieList) =>
-      this(newMovieList: newMovieList);
+      call(newMovieList: newMovieList);
 
   @override
-  MovieState movieInfo(MovieInfo? movieInfo) => this(movieInfo: movieInfo);
+  MovieState movieInfo(MovieInfo? movieInfo) => call(movieInfo: movieInfo);
 
   @override
   MovieState movieSearchList(List<Movie> movieSearchList) =>
-      this(movieSearchList: movieSearchList);
+      call(movieSearchList: movieSearchList);
 
   @override
   MovieState movieHistory(List<Movie> movieHistory) =>
-      this(movieHistory: movieHistory);
+      call(movieHistory: movieHistory);
 
   @override
   MovieState movieSeries(List<Movie> movieSeries) =>
-      this(movieSeries: movieSeries);
+      call(movieSeries: movieSeries);
 
   @override
   MovieState movieSingle(List<Movie> movieSingle) =>
-      this(movieSingle: movieSingle);
+      call(movieSingle: movieSingle);
 
   @override
   MovieState movieCartoon(List<Movie> movieCartoon) =>
-      this(movieCartoon: movieCartoon);
+      call(movieCartoon: movieCartoon);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MovieState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `MovieState(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// MovieState(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   MovieState call({
     Object? newMovieList = const $CopyWithPlaceholder(),
     Object? movieInfo = const $CopyWithPlaceholder(),
@@ -89,46 +92,47 @@ class _$MovieStateCWProxyImpl implements _$MovieStateCWProxy {
   }) {
     return MovieState(
       newMovieList:
-          newMovieList == const $CopyWithPlaceholder()
-              ? _value.newMovieList
-              // ignore: cast_nullable_to_non_nullable
-              : newMovieList as List<Movie>,
-      movieInfo:
-          movieInfo == const $CopyWithPlaceholder()
-              ? _value.movieInfo
-              // ignore: cast_nullable_to_non_nullable
-              : movieInfo as MovieInfo?,
+          newMovieList == const $CopyWithPlaceholder() || newMovieList == null
+          ? _value.newMovieList
+          // ignore: cast_nullable_to_non_nullable
+          : newMovieList as List<Movie>,
+      movieInfo: movieInfo == const $CopyWithPlaceholder()
+          ? _value.movieInfo
+          // ignore: cast_nullable_to_non_nullable
+          : movieInfo as MovieInfo?,
       movieSearchList:
-          movieSearchList == const $CopyWithPlaceholder()
-              ? _value.movieSearchList
-              // ignore: cast_nullable_to_non_nullable
-              : movieSearchList as List<Movie>,
+          movieSearchList == const $CopyWithPlaceholder() ||
+              movieSearchList == null
+          ? _value.movieSearchList
+          // ignore: cast_nullable_to_non_nullable
+          : movieSearchList as List<Movie>,
       movieHistory:
-          movieHistory == const $CopyWithPlaceholder()
-              ? _value.movieHistory
-              // ignore: cast_nullable_to_non_nullable
-              : movieHistory as List<Movie>,
+          movieHistory == const $CopyWithPlaceholder() || movieHistory == null
+          ? _value.movieHistory
+          // ignore: cast_nullable_to_non_nullable
+          : movieHistory as List<Movie>,
       movieSeries:
-          movieSeries == const $CopyWithPlaceholder()
-              ? _value.movieSeries
-              // ignore: cast_nullable_to_non_nullable
-              : movieSeries as List<Movie>,
+          movieSeries == const $CopyWithPlaceholder() || movieSeries == null
+          ? _value.movieSeries
+          // ignore: cast_nullable_to_non_nullable
+          : movieSeries as List<Movie>,
       movieSingle:
-          movieSingle == const $CopyWithPlaceholder()
-              ? _value.movieSingle
-              // ignore: cast_nullable_to_non_nullable
-              : movieSingle as List<Movie>,
+          movieSingle == const $CopyWithPlaceholder() || movieSingle == null
+          ? _value.movieSingle
+          // ignore: cast_nullable_to_non_nullable
+          : movieSingle as List<Movie>,
       movieCartoon:
-          movieCartoon == const $CopyWithPlaceholder()
-              ? _value.movieCartoon
-              // ignore: cast_nullable_to_non_nullable
-              : movieCartoon as List<Movie>,
+          movieCartoon == const $CopyWithPlaceholder() || movieCartoon == null
+          ? _value.movieCartoon
+          // ignore: cast_nullable_to_non_nullable
+          : movieCartoon as List<Movie>,
     );
   }
 }
 
 extension $MovieStateCopyWith on MovieState {
-  /// Returns a callable class that can be used as follows: `instanceOfMovieState.copyWith(...)` or like so:`instanceOfMovieState.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfMovieState.copyWith(...)` or `instanceOfMovieState.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$MovieStateCWProxy get copyWith => _$MovieStateCWProxyImpl(this);
 }
@@ -143,10 +147,9 @@ MovieState _$MovieStateFromJson(Map<String, dynamic> json) => MovieState(
           ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
-  movieInfo:
-      json['movieInfo'] == null
-          ? null
-          : MovieInfo.fromJson(json['movieInfo'] as Map<String, dynamic>),
+  movieInfo: json['movieInfo'] == null
+      ? null
+      : MovieInfo.fromJson(json['movieInfo'] as Map<String, dynamic>),
   movieSearchList:
       (json['movieSearchList'] as List<dynamic>?)
           ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))

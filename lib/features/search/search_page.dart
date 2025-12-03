@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:story/common/domain/entities/response/movie_data.dart';
 import 'package:story/common/widgets/text_field/default_textfield.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:story/core/language/l10n/app_localizations.dart';
 import 'package:story/core/di/di.dart';
 import 'package:story/core/text_style/app_text_style.dart';
 import 'package:story/features/movie/cubit/movie_cubit.dart';
@@ -69,12 +69,12 @@ class _SearchPageState extends State<SearchPage> {
               return state.movieSearchList.isEmpty
                   ? SizedBox()
                   : ListView.separated(
-                    itemBuilder: (context, index) {
-                      return _buildMovie(state.movieSearchList[index]);
-                    },
-                    separatorBuilder: (context, index) => Gap(10),
-                    itemCount: movieSearchList.length,
-                  );
+                      itemBuilder: (context, index) {
+                        return _buildMovie(state.movieSearchList[index]);
+                      },
+                      separatorBuilder: (context, index) => Gap(10),
+                      itemCount: movieSearchList.length,
+                    );
             },
           ),
         ),

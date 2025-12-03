@@ -63,12 +63,13 @@ abstract class _$MovieCWProxy {
 
   Movie episodeCurrentlyWatching(int episodeCurrentlyWatching);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Movie(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Movie(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Movie(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Movie call({
     String? id,
     String? name,
@@ -101,105 +102,107 @@ abstract class _$MovieCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfMovie.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfMovie.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfMovie.copyWith(...)` or call `instanceOfMovie.copyWith.fieldName(value)` for a single field.
 class _$MovieCWProxyImpl implements _$MovieCWProxy {
   const _$MovieCWProxyImpl(this._value);
 
   final Movie _value;
 
   @override
-  Movie id(String? id) => this(id: id);
+  Movie id(String? id) => call(id: id);
 
   @override
-  Movie name(String? name) => this(name: name);
+  Movie name(String? name) => call(name: name);
 
   @override
-  Movie slug(String? slug) => this(slug: slug);
+  Movie slug(String? slug) => call(slug: slug);
 
   @override
-  Movie originName(String? originName) => this(originName: originName);
+  Movie originName(String? originName) => call(originName: originName);
 
   @override
-  Movie content(String? content) => this(content: content);
+  Movie content(String? content) => call(content: content);
 
   @override
-  Movie type(String? type) => this(type: type);
+  Movie type(String? type) => call(type: type);
 
   @override
-  Movie status(String? status) => this(status: status);
+  Movie status(String? status) => call(status: status);
 
   @override
-  Movie posterUrl(String? posterUrl) => this(posterUrl: posterUrl);
+  Movie posterUrl(String? posterUrl) => call(posterUrl: posterUrl);
 
   @override
-  Movie thumbUrl(String? thumbUrl) => this(thumbUrl: thumbUrl);
+  Movie thumbUrl(String? thumbUrl) => call(thumbUrl: thumbUrl);
 
   @override
-  Movie isCopyright(bool? isCopyright) => this(isCopyright: isCopyright);
+  Movie isCopyright(bool? isCopyright) => call(isCopyright: isCopyright);
 
   @override
-  Movie subDocquyen(bool? subDocquyen) => this(subDocquyen: subDocquyen);
+  Movie subDocquyen(bool? subDocquyen) => call(subDocquyen: subDocquyen);
 
   @override
-  Movie chieurap(bool? chieurap) => this(chieurap: chieurap);
+  Movie chieurap(bool? chieurap) => call(chieurap: chieurap);
 
   @override
-  Movie trailerUrl(String? trailerUrl) => this(trailerUrl: trailerUrl);
+  Movie trailerUrl(String? trailerUrl) => call(trailerUrl: trailerUrl);
 
   @override
-  Movie time(String? time) => this(time: time);
+  Movie time(String? time) => call(time: time);
 
   @override
   Movie episodeCurrent(String? episodeCurrent) =>
-      this(episodeCurrent: episodeCurrent);
+      call(episodeCurrent: episodeCurrent);
 
   @override
-  Movie episodeTotal(String? episodeTotal) => this(episodeTotal: episodeTotal);
+  Movie episodeTotal(String? episodeTotal) => call(episodeTotal: episodeTotal);
 
   @override
-  Movie quality(String? quality) => this(quality: quality);
+  Movie quality(String? quality) => call(quality: quality);
 
   @override
-  Movie lang(String? lang) => this(lang: lang);
+  Movie lang(String? lang) => call(lang: lang);
 
   @override
-  Movie notify(String? notify) => this(notify: notify);
+  Movie notify(String? notify) => call(notify: notify);
 
   @override
-  Movie showtimes(String? showtimes) => this(showtimes: showtimes);
+  Movie showtimes(String? showtimes) => call(showtimes: showtimes);
 
   @override
-  Movie year(int? year) => this(year: year);
+  Movie year(int? year) => call(year: year);
 
   @override
-  Movie view(int? view) => this(view: view);
+  Movie view(int? view) => call(view: view);
 
   @override
-  Movie actor(List<String>? actor) => this(actor: actor);
+  Movie actor(List<String>? actor) => call(actor: actor);
 
   @override
-  Movie director(List<String>? director) => this(director: director);
+  Movie director(List<String>? director) => call(director: director);
 
   @override
-  Movie category(List<Category>? category) => this(category: category);
+  Movie category(List<Category>? category) => call(category: category);
 
   @override
-  Movie country(List<Category>? country) => this(country: country);
+  Movie country(List<Category>? country) => call(country: country);
 
   @override
-  Movie duration(Duration? duration) => this(duration: duration);
+  Movie duration(Duration? duration) => call(duration: duration);
 
   @override
   Movie episodeCurrentlyWatching(int episodeCurrentlyWatching) =>
-      this(episodeCurrentlyWatching: episodeCurrentlyWatching);
+      call(episodeCurrentlyWatching: episodeCurrentlyWatching);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Movie(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Movie(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Movie(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Movie call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
@@ -231,152 +234,127 @@ class _$MovieCWProxyImpl implements _$MovieCWProxy {
     Object? episodeCurrentlyWatching = const $CopyWithPlaceholder(),
   }) {
     return Movie(
-      id:
-          id == const $CopyWithPlaceholder()
-              ? _value.id
-              // ignore: cast_nullable_to_non_nullable
-              : id as String?,
-      name:
-          name == const $CopyWithPlaceholder()
-              ? _value.name
-              // ignore: cast_nullable_to_non_nullable
-              : name as String?,
-      slug:
-          slug == const $CopyWithPlaceholder()
-              ? _value.slug
-              // ignore: cast_nullable_to_non_nullable
-              : slug as String?,
-      originName:
-          originName == const $CopyWithPlaceholder()
-              ? _value.originName
-              // ignore: cast_nullable_to_non_nullable
-              : originName as String?,
-      content:
-          content == const $CopyWithPlaceholder()
-              ? _value.content
-              // ignore: cast_nullable_to_non_nullable
-              : content as String?,
-      type:
-          type == const $CopyWithPlaceholder()
-              ? _value.type
-              // ignore: cast_nullable_to_non_nullable
-              : type as String?,
-      status:
-          status == const $CopyWithPlaceholder()
-              ? _value.status
-              // ignore: cast_nullable_to_non_nullable
-              : status as String?,
-      posterUrl:
-          posterUrl == const $CopyWithPlaceholder()
-              ? _value.posterUrl
-              // ignore: cast_nullable_to_non_nullable
-              : posterUrl as String?,
-      thumbUrl:
-          thumbUrl == const $CopyWithPlaceholder()
-              ? _value.thumbUrl
-              // ignore: cast_nullable_to_non_nullable
-              : thumbUrl as String?,
-      isCopyright:
-          isCopyright == const $CopyWithPlaceholder()
-              ? _value.isCopyright
-              // ignore: cast_nullable_to_non_nullable
-              : isCopyright as bool?,
-      subDocquyen:
-          subDocquyen == const $CopyWithPlaceholder()
-              ? _value.subDocquyen
-              // ignore: cast_nullable_to_non_nullable
-              : subDocquyen as bool?,
-      chieurap:
-          chieurap == const $CopyWithPlaceholder()
-              ? _value.chieurap
-              // ignore: cast_nullable_to_non_nullable
-              : chieurap as bool?,
-      trailerUrl:
-          trailerUrl == const $CopyWithPlaceholder()
-              ? _value.trailerUrl
-              // ignore: cast_nullable_to_non_nullable
-              : trailerUrl as String?,
-      time:
-          time == const $CopyWithPlaceholder()
-              ? _value.time
-              // ignore: cast_nullable_to_non_nullable
-              : time as String?,
-      episodeCurrent:
-          episodeCurrent == const $CopyWithPlaceholder()
-              ? _value.episodeCurrent
-              // ignore: cast_nullable_to_non_nullable
-              : episodeCurrent as String?,
-      episodeTotal:
-          episodeTotal == const $CopyWithPlaceholder()
-              ? _value.episodeTotal
-              // ignore: cast_nullable_to_non_nullable
-              : episodeTotal as String?,
-      quality:
-          quality == const $CopyWithPlaceholder()
-              ? _value.quality
-              // ignore: cast_nullable_to_non_nullable
-              : quality as String?,
-      lang:
-          lang == const $CopyWithPlaceholder()
-              ? _value.lang
-              // ignore: cast_nullable_to_non_nullable
-              : lang as String?,
-      notify:
-          notify == const $CopyWithPlaceholder()
-              ? _value.notify
-              // ignore: cast_nullable_to_non_nullable
-              : notify as String?,
-      showtimes:
-          showtimes == const $CopyWithPlaceholder()
-              ? _value.showtimes
-              // ignore: cast_nullable_to_non_nullable
-              : showtimes as String?,
-      year:
-          year == const $CopyWithPlaceholder()
-              ? _value.year
-              // ignore: cast_nullable_to_non_nullable
-              : year as int?,
-      view:
-          view == const $CopyWithPlaceholder()
-              ? _value.view
-              // ignore: cast_nullable_to_non_nullable
-              : view as int?,
-      actor:
-          actor == const $CopyWithPlaceholder()
-              ? _value.actor
-              // ignore: cast_nullable_to_non_nullable
-              : actor as List<String>?,
-      director:
-          director == const $CopyWithPlaceholder()
-              ? _value.director
-              // ignore: cast_nullable_to_non_nullable
-              : director as List<String>?,
-      category:
-          category == const $CopyWithPlaceholder()
-              ? _value.category
-              // ignore: cast_nullable_to_non_nullable
-              : category as List<Category>?,
-      country:
-          country == const $CopyWithPlaceholder()
-              ? _value.country
-              // ignore: cast_nullable_to_non_nullable
-              : country as List<Category>?,
-      duration:
-          duration == const $CopyWithPlaceholder()
-              ? _value.duration
-              // ignore: cast_nullable_to_non_nullable
-              : duration as Duration?,
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String?,
+      name: name == const $CopyWithPlaceholder()
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String?,
+      slug: slug == const $CopyWithPlaceholder()
+          ? _value.slug
+          // ignore: cast_nullable_to_non_nullable
+          : slug as String?,
+      originName: originName == const $CopyWithPlaceholder()
+          ? _value.originName
+          // ignore: cast_nullable_to_non_nullable
+          : originName as String?,
+      content: content == const $CopyWithPlaceholder()
+          ? _value.content
+          // ignore: cast_nullable_to_non_nullable
+          : content as String?,
+      type: type == const $CopyWithPlaceholder()
+          ? _value.type
+          // ignore: cast_nullable_to_non_nullable
+          : type as String?,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as String?,
+      posterUrl: posterUrl == const $CopyWithPlaceholder()
+          ? _value.posterUrl
+          // ignore: cast_nullable_to_non_nullable
+          : posterUrl as String?,
+      thumbUrl: thumbUrl == const $CopyWithPlaceholder()
+          ? _value.thumbUrl
+          // ignore: cast_nullable_to_non_nullable
+          : thumbUrl as String?,
+      isCopyright: isCopyright == const $CopyWithPlaceholder()
+          ? _value.isCopyright
+          // ignore: cast_nullable_to_non_nullable
+          : isCopyright as bool?,
+      subDocquyen: subDocquyen == const $CopyWithPlaceholder()
+          ? _value.subDocquyen
+          // ignore: cast_nullable_to_non_nullable
+          : subDocquyen as bool?,
+      chieurap: chieurap == const $CopyWithPlaceholder()
+          ? _value.chieurap
+          // ignore: cast_nullable_to_non_nullable
+          : chieurap as bool?,
+      trailerUrl: trailerUrl == const $CopyWithPlaceholder()
+          ? _value.trailerUrl
+          // ignore: cast_nullable_to_non_nullable
+          : trailerUrl as String?,
+      time: time == const $CopyWithPlaceholder()
+          ? _value.time
+          // ignore: cast_nullable_to_non_nullable
+          : time as String?,
+      episodeCurrent: episodeCurrent == const $CopyWithPlaceholder()
+          ? _value.episodeCurrent
+          // ignore: cast_nullable_to_non_nullable
+          : episodeCurrent as String?,
+      episodeTotal: episodeTotal == const $CopyWithPlaceholder()
+          ? _value.episodeTotal
+          // ignore: cast_nullable_to_non_nullable
+          : episodeTotal as String?,
+      quality: quality == const $CopyWithPlaceholder()
+          ? _value.quality
+          // ignore: cast_nullable_to_non_nullable
+          : quality as String?,
+      lang: lang == const $CopyWithPlaceholder()
+          ? _value.lang
+          // ignore: cast_nullable_to_non_nullable
+          : lang as String?,
+      notify: notify == const $CopyWithPlaceholder()
+          ? _value.notify
+          // ignore: cast_nullable_to_non_nullable
+          : notify as String?,
+      showtimes: showtimes == const $CopyWithPlaceholder()
+          ? _value.showtimes
+          // ignore: cast_nullable_to_non_nullable
+          : showtimes as String?,
+      year: year == const $CopyWithPlaceholder()
+          ? _value.year
+          // ignore: cast_nullable_to_non_nullable
+          : year as int?,
+      view: view == const $CopyWithPlaceholder()
+          ? _value.view
+          // ignore: cast_nullable_to_non_nullable
+          : view as int?,
+      actor: actor == const $CopyWithPlaceholder()
+          ? _value.actor
+          // ignore: cast_nullable_to_non_nullable
+          : actor as List<String>?,
+      director: director == const $CopyWithPlaceholder()
+          ? _value.director
+          // ignore: cast_nullable_to_non_nullable
+          : director as List<String>?,
+      category: category == const $CopyWithPlaceholder()
+          ? _value.category
+          // ignore: cast_nullable_to_non_nullable
+          : category as List<Category>?,
+      country: country == const $CopyWithPlaceholder()
+          ? _value.country
+          // ignore: cast_nullable_to_non_nullable
+          : country as List<Category>?,
+      duration: duration == const $CopyWithPlaceholder()
+          ? _value.duration
+          // ignore: cast_nullable_to_non_nullable
+          : duration as Duration?,
       episodeCurrentlyWatching:
-          episodeCurrentlyWatching == const $CopyWithPlaceholder()
-              ? _value.episodeCurrentlyWatching
-              // ignore: cast_nullable_to_non_nullable
-              : episodeCurrentlyWatching as int,
+          episodeCurrentlyWatching == const $CopyWithPlaceholder() ||
+              episodeCurrentlyWatching == null
+          ? _value.episodeCurrentlyWatching
+          // ignore: cast_nullable_to_non_nullable
+          : episodeCurrentlyWatching as int,
     );
   }
 }
 
 extension $MovieCopyWith on Movie {
-  /// Returns a callable class that can be used as follows: `instanceOfMovie.copyWith(...)` or like so:`instanceOfMovie.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfMovie.copyWith(...)` or `instanceOfMovie.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$MovieCWProxy get copyWith => _$MovieCWProxyImpl(this);
 }
@@ -386,14 +364,12 @@ extension $MovieCopyWith on Movie {
 // **************************************************************************
 
 MovieData _$MovieDataFromJson(Map<String, dynamic> json) => MovieData(
-  items:
-      (json['items'] as List<dynamic>?)
-          ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  pagination:
-      json['pagination'] == null
-          ? null
-          : Pagination.fromJson(json['pagination'] as Map<String, dynamic>),
+  items: (json['items'] as List<dynamic>?)
+      ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  pagination: json['pagination'] == null
+      ? null
+      : Pagination.fromJson(json['pagination'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$MovieDataToJson(MovieData instance) => <String, dynamic>{
@@ -425,20 +401,18 @@ Movie _$MovieFromJson(Map<String, dynamic> json) => Movie(
   year: (json['year'] as num?)?.toInt(),
   view: (json['view'] as num?)?.toInt(),
   actor: (json['actor'] as List<dynamic>?)?.map((e) => e as String).toList(),
-  director:
-      (json['director'] as List<dynamic>?)?.map((e) => e as String).toList(),
-  category:
-      (json['category'] as List<dynamic>?)
-          ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  country:
-      (json['country'] as List<dynamic>?)
-          ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  duration:
-      json['duration'] == null
-          ? null
-          : Duration(microseconds: (json['duration'] as num).toInt()),
+  director: (json['director'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  category: (json['category'] as List<dynamic>?)
+      ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  country: (json['country'] as List<dynamic>?)
+      ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  duration: json['duration'] == null
+      ? null
+      : Duration(microseconds: (json['duration'] as num).toInt()),
   episodeCurrentlyWatching:
       (json['episodeCurrentlyWatching'] as num?)?.toInt() ?? 0,
 );

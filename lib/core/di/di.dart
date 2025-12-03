@@ -1,4 +1,4 @@
-import 'package:alice/alice.dart';
+
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
@@ -14,9 +14,9 @@ import 'package:story/features/movie/cubit/movie_cubit.dart';
 
 final getIt = GetIt.instance;
 
-Future<void> setup(String baseUrl, Alice alice) async {
+Future<void> setup(String baseUrl) async {
   getIt.registerSingleton<Logger>(AppLogger.logger);
-  getIt.registerSingleton<Dio>(AppNetworkModule.provideDio(alice));
+  getIt.registerSingleton<Dio>(AppNetworkModule.provideDio());
   getIt.registerSingleton<SharedPrefs>(SharedPrefs());
   await getIt<SharedPrefs>().init();
 

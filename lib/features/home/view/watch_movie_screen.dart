@@ -10,7 +10,7 @@ import 'package:story/core/di/di.dart';
 import 'package:story/features/movie/cubit/movie_cubit.dart';
 import 'package:story/features/movie/cubit/movie_state.dart';
 import 'package:video_player/video_player.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:story/core/language/l10n/app_localizations.dart';
 
 class WatchMovieScreen extends StatefulWidget {
   const WatchMovieScreen({super.key, required this.movie});
@@ -182,19 +182,18 @@ class _WatchMovieScreenState extends State<WatchMovieScreen> {
   Widget buildVideo() {
     return AspectRatio(
       aspectRatio: 16 / 9,
-      child:
-          _chewieController != null
-              ? SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: Chewie(
-                  key: ValueKey(
-                    _chewieController,
-                  ), // 👈 Force rebuild khi đổi controller
-                  controller: _chewieController!,
-                ),
-              )
-              : const Center(child: CircularProgressIndicator()),
+      child: _chewieController != null
+          ? SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Chewie(
+                key: ValueKey(
+                  _chewieController,
+                ), // 👈 Force rebuild khi đổi controller
+                controller: _chewieController!,
+              ),
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
@@ -280,10 +279,9 @@ class _WatchMovieScreenState extends State<WatchMovieScreen> {
                                 height: 40,
                                 width: 40,
                                 decoration: BoxDecoration(
-                                  color:
-                                      currentIndex == index
-                                          ? Colors.red
-                                          : Colors.blue,
+                                  color: currentIndex == index
+                                      ? Colors.red
+                                      : Colors.blue,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Text('${index + 1}'),

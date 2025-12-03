@@ -9,44 +9,47 @@ part of 'theme_state.dart';
 abstract class _$ThemeStateCWProxy {
   ThemeState isDark(bool isDark);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ThemeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ThemeState(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ThemeState(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ThemeState call({bool isDark});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfThemeState.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfThemeState.copyWith.fieldName(...)`
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfThemeState.copyWith(...)` or call `instanceOfThemeState.copyWith.fieldName(value)` for a single field.
 class _$ThemeStateCWProxyImpl implements _$ThemeStateCWProxy {
   const _$ThemeStateCWProxyImpl(this._value);
 
   final ThemeState _value;
 
   @override
-  ThemeState isDark(bool isDark) => this(isDark: isDark);
+  ThemeState isDark(bool isDark) => call(isDark: isDark);
 
   @override
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ThemeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ThemeState(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ThemeState(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ThemeState call({Object? isDark = const $CopyWithPlaceholder()}) {
     return ThemeState(
-      isDark:
-          isDark == const $CopyWithPlaceholder()
-              ? _value.isDark
-              // ignore: cast_nullable_to_non_nullable
-              : isDark as bool,
+      isDark: isDark == const $CopyWithPlaceholder() || isDark == null
+          ? _value.isDark
+          // ignore: cast_nullable_to_non_nullable
+          : isDark as bool,
     );
   }
 }
 
 extension $ThemeStateCopyWith on ThemeState {
-  /// Returns a callable class that can be used as follows: `instanceOfThemeState.copyWith(...)` or like so:`instanceOfThemeState.copyWith.fieldName(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfThemeState.copyWith(...)` or `instanceOfThemeState.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ThemeStateCWProxy get copyWith => _$ThemeStateCWProxyImpl(this);
 }

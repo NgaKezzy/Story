@@ -12,7 +12,7 @@ import 'package:story/core/routers/app_router.dart';
 import 'package:story/core/text_style/app_text_style.dart';
 import 'package:story/core/theme/cubit/theme_cubit.dart';
 import 'package:story/core/theme/cubit/theme_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:story/core/language/l10n/app_localizations.dart';
 import 'package:story/features/auth/cubit/auth_cubit.dart';
 
 class SettingPage extends StatelessWidget {

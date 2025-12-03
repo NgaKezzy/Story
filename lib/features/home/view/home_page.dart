@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:story/core/language/l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/web.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import 'package:story/common/domain/entities/response/movie_data.dart';
 import 'package:story/common/widgets/loading/loading_component.dart';
 import 'package:story/core/colors/app_colors.dart';
@@ -15,7 +17,6 @@ import 'package:story/core/text_style/app_text_style.dart';
 import 'package:story/features/home/models/param_movie_list_page.dart';
 import 'package:story/features/movie/cubit/movie_cubit.dart';
 import 'package:story/features/movie/cubit/movie_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -82,96 +83,92 @@ class _HomePageState extends State<HomePage> {
     required bool isPadding,
   }) {
     return SliverToBoxAdapter(
-      child:
-          movies.isNotEmpty
-              ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Gap(10),
-                    Row(
-                      children: [
-                        Text(title, style: AppTextStyles.textStyleBold20),
-                        Spacer(),
-                        IconButton(
-                          onPressed: () {
-                            context.push(
-                              AppRouteConstant.movieListPage,
-                              extra: ParamMovieListPage(
-                                movies: movies,
-                                title: title,
-                              ),
-                            );
-                          },
-                          icon: Icon(Icons.arrow_forward_ios),
-                        ),
-                      ],
-                    ),
-
-                    // Gap(10),
-                    GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: EdgeInsets.only(bottom: isPadding ? 90 : 0),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 10.0,
-                            mainAxisSpacing: 10.0,
-                            childAspectRatio: 0.8,
-                          ),
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            movieCubit.playMovie(
-                              movie: movies[index],
-                              context: context,
-                            );
-                          },
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: CachedNetworkImage(
-                                      imageUrl: movies[index].fullThumbUrl,
-                                      errorWidget:
-                                          (context, url, error) => Center(
-                                            child: Icon(Icons.warning),
-                                          ),
-                                      placeholder:
-                                          (context, url) => Container(
-                                            color: Colors.transparent,
-                                            alignment: Alignment.center,
-                                            child: LoadingComponent(),
-                                          ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  // width: ScreenUtil().screenWidth / 2 - 11,
-                                  child: Text(
-                                    movies[index].name ?? '',
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ],
+      child: movies.isNotEmpty
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Gap(10),
+                  Row(
+                    children: [
+                      Text(title, style: AppTextStyles.textStyleBold20),
+                      Spacer(),
+                      IconButton(
+                        onPressed: () {
+                          context.push(
+                            AppRouteConstant.movieListPage,
+                            extra: ParamMovieListPage(
+                              movies: movies,
+                              title: title,
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                        icon: Icon(Icons.arrow_forward_ios),
+                      ),
+                    ],
+                  ),
 
-                      itemCount: 9,
-                    ),
-                  ],
-                ),
-              )
-              : SizedBox(),
+                  // Gap(10),
+                  GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.only(bottom: isPadding ? 90 : 0),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 10.0,
+                          mainAxisSpacing: 10.0,
+                          childAspectRatio: 0.8,
+                        ),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          movieCubit.playMovie(
+                            movie: movies[index],
+                            context: context,
+                          );
+                        },
+                        child: Container(
+                          color: Colors.transparent,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: CachedNetworkImage(
+                                    imageUrl: movies[index].fullThumbUrl,
+                                    errorWidget: (context, url, error) =>
+                                        Center(child: Icon(Icons.warning)),
+                                    placeholder: (context, url) => Container(
+                                      color: Colors.transparent,
+                                      alignment: Alignment.center,
+                                      child: LoadingComponent(),
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                // width: ScreenUtil().screenWidth / 2 - 11,
+                                child: Text(
+                                  movies[index].name ?? '',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+
+                    itemCount: 9,
+                  ),
+                ],
+              ),
+            )
+          : SizedBox(),
     );
   }
 
@@ -201,15 +198,13 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(8),
                           child: CachedNetworkImage(
                             imageUrl: state.newMovieList[index].thumbUrl ?? '',
-                            errorWidget:
-                                (context, url, error) =>
-                                    Center(child: Icon(Icons.warning)),
-                            placeholder:
-                                (context, url) => Container(
-                                  color: Colors.transparent,
-                                  alignment: Alignment.center,
-                                  child: LoadingComponent(),
-                                ),
+                            errorWidget: (context, url, error) =>
+                                Center(child: Icon(Icons.warning)),
+                            placeholder: (context, url) => Container(
+                              color: Colors.transparent,
+                              alignment: Alignment.center,
+                              child: LoadingComponent(),
+                            ),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -221,24 +216,23 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Center(
-                child:
-                    state.newMovieList.isNotEmpty
-                        ? Column(
-                          children: [
-                            const SizedBox(height: 10),
-                            SmoothPageIndicator(
-                              controller: _pageController,
-                              //     _pageController, // PageController
-                              count: state.newMovieList.length,
-                              effect: ExpandingDotsEffect(
-                                dotWidth: 10,
-                                dotHeight: 10,
-                              ), // your preferred effect
-                              onDotClicked: (index) {},
-                            ),
-                          ],
-                        )
-                        : const SizedBox(),
+                child: state.newMovieList.isNotEmpty
+                    ? Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          SmoothPageIndicator(
+                            controller: _pageController,
+                            //     _pageController, // PageController
+                            count: state.newMovieList.length,
+                            effect: ExpandingDotsEffect(
+                              dotWidth: 10,
+                              dotHeight: 10,
+                            ), // your preferred effect
+                            onDotClicked: (index) {},
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
               ),
             ],
           );
@@ -297,20 +291,16 @@ class _HomePageState extends State<HomePage> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: CachedNetworkImage(
-                                      imageUrl:
-                                          state
-                                              .movieCartoon[index]
-                                              .fullThumbUrl,
-                                      errorWidget:
-                                          (context, url, error) => Center(
-                                            child: Icon(Icons.warning),
-                                          ),
-                                      placeholder:
-                                          (context, url) => Container(
-                                            color: Colors.transparent,
-                                            alignment: Alignment.center,
-                                            child: LoadingComponent(),
-                                          ),
+                                      imageUrl: state
+                                          .movieCartoon[index]
+                                          .fullThumbUrl,
+                                      errorWidget: (context, url, error) =>
+                                          Center(child: Icon(Icons.warning)),
+                                      placeholder: (context, url) => Container(
+                                        color: Colors.transparent,
+                                        alignment: Alignment.center,
+                                        child: LoadingComponent(),
+                                      ),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
