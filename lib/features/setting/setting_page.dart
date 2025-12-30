@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:cupertino_native/components/switch.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,18 +39,7 @@ class SettingPage extends StatelessWidget {
               builder: (context, state) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(language.darkMode),
-                    Transform.scale(
-                      scale: 0.7,
-                      child: CupertinoSwitch(
-                        value: themeCubit.state.isDark,
-                        onChanged: (value) {
-                          themeCubit.toggedTheme();
-                        },
-                      ),
-                    ),
-                  ],
+                  children: [Text(language.darkMode), _buildSwitch()],
                 );
               },
             ),
@@ -105,5 +97,27 @@ class SettingPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildSwitch() {
+    if (Platform.isIOS) {
+      return CNSwitch(
+        value: themeCubit.state.isDark,
+        color: AppColors.red5,
+        onChanged: (v) {
+          themeCubit.toggedTheme();
+        },
+      );
+    } else {
+      return Transform.scale(
+        scale: 0.7,
+        child: CupertinoSwitch(
+          value: themeCubit.state.isDark,
+          onChanged: (value) {
+            themeCubit.toggedTheme();
+          },
+        ),
+      );
+    }
   }
 }

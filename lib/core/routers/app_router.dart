@@ -11,7 +11,6 @@ import 'package:story/features/home/view/movie_list_page.dart';
 import 'package:story/features/home/view/watch_movie_screen.dart';
 import 'package:story/features/movie/cubit/movie_cubit.dart';
 import 'package:story/features/my_home_page.dart';
-import 'package:story/features/onboarding/onboarding_provider/onboarding_provider.dart';
 import 'package:story/features/setting/movie_history_page.dart';
 import 'package:story/features/splash/splash_page.dart';
 
