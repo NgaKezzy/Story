@@ -191,122 +191,129 @@ class _WatchMovieScreenState extends State<WatchMovieScreen> {
   Widget build(BuildContext context) {
     final language = AppLocalizations.of(context);
 
-    return PiPSwitcher(
-      childWhenDisabled: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          surfaceTintColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Container(
-              padding: EdgeInsets.all(6.r),
-              decoration: BoxDecoration(
-                color: AppColors.red5.withOpacity(0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                size: 18.sp,
-                color: AppColors.red5,
-              ),
+    final scaffoldWidget = Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Container(
+            padding: EdgeInsets.all(6.r),
+            decoration: BoxDecoration(
+              color: AppColors.red5.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 18.sp,
+              color: AppColors.red5,
             ),
           ),
-          centerTitle: true,
-          title: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Icon play
-              Container(
-                padding: EdgeInsets.all(6.r),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [AppColors.red5, AppColors.red3],
-                  ),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.red5.withOpacity(0.4),
-                      blurRadius: 8,
-                      spreadRadius: 1,
-                    ),
-                  ],
+        ),
+        centerTitle: true,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Icon play
+            Container(
+              padding: EdgeInsets.all(6.r),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.red5, AppColors.red3],
                 ),
-                child: Icon(
-                  Icons.play_arrow_rounded,
-                  size: 18.sp,
-                  color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.red5.withOpacity(0.4),
+                    blurRadius: 8,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.play_arrow_rounded,
+                size: 18.sp,
+                color: Colors.white,
+              ),
+            ),
+            Gap(10.w),
+            // Title với gradient
+            Flexible(
+              child: ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (bounds) => LinearGradient(
+                  colors: [AppColors.red1, AppColors.red5],
+                ).createShader(bounds),
+                child: Text(
+                  language!.watchAMovie,
+                  style: AppTextStyles.textStyleBold18.copyWith(
+                    letterSpacing: 1,
+                    color: Colors.white,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              Gap(10.w),
-              // Title với gradient
-              Flexible(
-                child: ShaderMask(
-                  blendMode: BlendMode.srcIn,
-                  shaderCallback: (bounds) => LinearGradient(
-                    colors: [AppColors.red1, AppColors.red5],
-                  ).createShader(bounds),
-                  child: Text(
-                    language!.watchAMovie,
-                    style: AppTextStyles.textStyleBold18.copyWith(
-                      letterSpacing: 1,
-                      color: Colors.white,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            // PiP button
-            if (_isPipAvailable)
-              IconButton(
-                onPressed: _enablePip,
-                icon: Container(
-                  padding: EdgeInsets.all(6.r),
-                  decoration: BoxDecoration(
-                    color: AppColors.red5.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.picture_in_picture_alt_rounded,
-                    size: 18.sp,
-                    color: AppColors.red5,
-                  ),
-                ),
-              ),
+            ),
           ],
         ),
-        body: SafeArea(
-          bottom: false,
-          child: BlocBuilder<MovieCubit, MovieState>(
-            builder: (context, state) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [buildVideo(), buildInfoMovie(context)],
-              );
-            },
-          ),
-        ),
+        actions: [
+          // PiP button - chỉ Android
+          if (_isPipAvailable)
+            IconButton(
+              onPressed: _enablePip,
+              icon: Container(
+                padding: EdgeInsets.all(6.r),
+                decoration: BoxDecoration(
+                  color: AppColors.red5.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.picture_in_picture_alt_rounded,
+                  size: 18.sp,
+                  color: AppColors.red5,
+                ),
+              ),
+            ),
+        ],
       ),
-      // Khi ở PiP mode - chỉ hiện video player
-      childWhenEnabled: Container(
-        color: Colors.black,
-        child: Center(
-          child: AspectRatio(
-            aspectRatio: 16 / 9,
-            child: _chewieController != null
-                ? Chewie(
-                    key: ValueKey(_chewieController),
-                    controller: _chewieController!,
-                  )
-                : const CircularProgressIndicator(),
-          ),
+      body: SafeArea(
+        bottom: false,
+        child: BlocBuilder<MovieCubit, MovieState>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [buildVideo(), buildInfoMovie(context)],
+            );
+          },
         ),
       ),
     );
+
+    // Android: Dùng PiPSwitcher
+    if (Platform.isAndroid) {
+      return PiPSwitcher(
+        childWhenDisabled: scaffoldWidget,
+        childWhenEnabled: Container(
+          color: Colors.black,
+          child: Center(
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: _chewieController != null
+                  ? Chewie(
+                      key: ValueKey(_chewieController),
+                      controller: _chewieController!,
+                    )
+                  : const CircularProgressIndicator(),
+            ),
+          ),
+        ),
+      );
+    }
+
+    // iOS: Trả về Scaffold thẳng
+    return scaffoldWidget;
   }
 
   Widget buildVideo() {
