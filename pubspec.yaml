@@ -57,6 +57,7 @@ dependencies:
   adaptive_dialog: ^2.4.1
   hydrated_bloc: ^10.0.0
   path_provider: ^2.1.5
+  floating: ^6.0.0
 
   bloc: any
   flutter_gen: ^5.12.0
@@ -90,5 +91,4 @@ flutter:
 
   assets:
     - assets/svg/
-    - assets/images/
     - .env
