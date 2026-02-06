@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:story/common/domain/entities/response/movie_data.dart';
+import 'package:story/core/colors/app_colors.dart';
 import 'package:story/core/di/di.dart';
+import 'package:story/core/text_style/app_text_style.dart';
 import 'package:story/features/movie/cubit/movie_cubit.dart';
 import 'package:story/features/movie/cubit/movie_state.dart';
 import 'package:video_player/video_player.dart';
@@ -164,7 +167,70 @@ class _WatchMovieScreenState extends State<WatchMovieScreen> {
     final language = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text(language!.watchAMovie)),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Container(
+            padding: EdgeInsets.all(6.r),
+            decoration: BoxDecoration(
+              color: AppColors.red5.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 18.sp,
+              color: AppColors.red5,
+            ),
+          ),
+        ),
+        centerTitle: true,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Icon play
+            Container(
+              padding: EdgeInsets.all(6.r),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.red5, AppColors.red3],
+                ),
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.red5.withOpacity(0.4),
+                    blurRadius: 8,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.play_arrow_rounded,
+                size: 18.sp,
+                color: Colors.white,
+              ),
+            ),
+            Gap(10.w),
+            // Title với gradient
+            ShaderMask(
+              blendMode: BlendMode.srcIn,
+              shaderCallback: (bounds) => LinearGradient(
+                colors: [AppColors.red1, AppColors.red5],
+              ).createShader(bounds),
+              child: Text(
+                language!.watchAMovie,
+                style: AppTextStyles.textStyleBold18.copyWith(
+                  letterSpacing: 1,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         bottom: false,
         child: BlocBuilder<MovieCubit, MovieState>(

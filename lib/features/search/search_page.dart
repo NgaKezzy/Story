@@ -4,9 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:story/common/domain/entities/response/movie_data.dart';
 import 'package:story/common/widgets/text_field/default_textfield.dart';
+import 'package:story/core/colors/app_colors.dart';
 import 'package:story/core/language/l10n/app_localizations.dart';
 import 'package:story/core/di/di.dart';
 import 'package:story/core/text_style/app_text_style.dart';
@@ -37,46 +39,91 @@ class _SearchPageState extends State<SearchPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: DefaultTextfield(
-          heightContainer: 45,
-          controller: _searchController,
-          onChanged: (p0) {
-            if (_debounce?.isActive ?? false) {
-              _debounce!.cancel();
-            }
-            _debounce = Timer(const Duration(milliseconds: 400), () {
-              movieCubit.getMovieSearch(_searchController.text.trim());
-            });
-          },
-          onTapOutSide: () {
-            FocusScope.of(context).unfocus();
-          },
-
-          isError: false,
-          hintText: language?.search,
-          maxLines: 1,
-          isShowCounter: true,
-          prefixIcon: Icon(Icons.search),
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        surfaceTintColor: Colors.transparent,
+        titleSpacing: 0,
+        title: Padding(
+          padding: EdgeInsets.only(left: 16.w),
+          child: Row(
+            children: [
+              // Logo SVG hình tròn
+              Container(
+                padding: EdgeInsets.all(6.r),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.red5.withOpacity(0.3),
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                ),
+                child: ClipOval(
+                  child: SvgPicture.asset(
+                    'assets/svg/logo.svg',
+                    height: 28.h,
+                    width: 28.w,
+                  ),
+                ),
+              ),
+              Gap(12.w),
+              // Text tìm kiếm với gradient
+              Expanded(
+                child: DefaultTextfield(
+                  heightContainer: 50,
+                  controller: _searchController,
+                  onChanged: (p0) {
+                    if (_debounce?.isActive ?? false) {
+                      _debounce!.cancel();
+                    }
+                    _debounce = Timer(const Duration(milliseconds: 400), () {
+                      movieCubit.getMovieSearch(_searchController.text.trim());
+                    });
+                  },
+                  onTapOutSide: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                  isError: false,
+                  hintText: language?.search,
+                  maxLines: 1,
+                  isShowCounter: true,
+                  prefixIcon: Icon(Icons.search, color: AppColors.red5),
+                ),
+              ),
+              Gap(16.w),
+            ],
+          ),
         ),
       ),
       body: SafeArea(
         bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: BlocBuilder<MovieCubit, MovieState>(
-            builder: (context, state) {
-              final movieSearchList = state.movieSearchList ?? [];
-              return state.movieSearchList.isEmpty
-                  ? SizedBox()
-                  : ListView.separated(
-                      itemBuilder: (context, index) {
-                        return _buildMovie(state.movieSearchList[index]);
-                      },
-                      separatorBuilder: (context, index) => Gap(10),
-                      itemCount: movieSearchList.length,
-                    );
-            },
-          ),
+        child: Column(
+          children: [
+            // Search field riêng biệt
+
+            // Danh sách kết quả
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w),
+                child: BlocBuilder<MovieCubit, MovieState>(
+                  builder: (context, state) {
+                    final movieSearchList = state.movieSearchList ?? [];
+                    return state.movieSearchList.isEmpty
+                        ? SizedBox()
+                        : ListView.separated(
+                            itemBuilder: (context, index) {
+                              return _buildMovie(state.movieSearchList[index]);
+                            },
+                            separatorBuilder: (context, index) => Gap(10),
+                            itemCount: movieSearchList.length,
+                          );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
