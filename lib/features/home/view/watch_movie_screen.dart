@@ -353,9 +353,7 @@ class _WatchMovieScreenState extends State<WatchMovieScreen> {
 
                       Text(
                         '${language!.movieName}: ${state.movieInfo?.movie?.name}',
-                        style: AppTextStyles.textStyle18.copyWith(
-                          color: AppColors.black,
-                        ),
+                        style: AppTextStyles.textStyle18,
                       ),
                       Gap(10),
 
@@ -403,8 +401,8 @@ class _WatchMovieScreenState extends State<WatchMovieScreen> {
                                 width: 40,
                                 decoration: BoxDecoration(
                                   color: currentIndex == index
-                                      ? Colors.red
-                                      : Colors.blue,
+                                      ? Colors.blue
+                                      : Colors.grey,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Text('${index + 1}'),
