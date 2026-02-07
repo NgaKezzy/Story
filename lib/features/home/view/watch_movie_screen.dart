@@ -349,27 +349,13 @@ class _WatchMovieScreenState extends State<WatchMovieScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
 
                     children: [
+                      Gap(10),
+
                       Text(
                         '${language!.movieName}: ${state.movieInfo?.movie?.name}',
-                      ),
-
-                      Gap(10),
-                      Text(
-                        '${language.movieContent}: ${state.movieInfo?.movie?.content}',
-                      ),
-                      Gap(10),
-
-                      Text(
-                        '${language.movieDirector}: ${state.movieInfo?.movie!.director?.join(', ')}',
-                      ),
-                      Gap(10),
-
-                      Text(
-                        '${language.movieActor}: ${state.movieInfo?.movie!.actor?.join(', ')}',
-                      ),
-                      Gap(10),
-                      Text(
-                        '${language.category}: ${state.movieInfo?.movie!.category?.join(', ')}', // chỗ này gọi đến phương thức toString trong class Category
+                        style: AppTextStyles.textStyle18.copyWith(
+                          color: AppColors.black,
+                        ),
                       ),
                       Gap(10),
 
@@ -426,6 +412,26 @@ class _WatchMovieScreenState extends State<WatchMovieScreen> {
                             );
                           },
                         ),
+
+                      Gap(10),
+                      Text(
+                        '${language.movieContent}: ${state.movieInfo?.movie?.content}',
+                      ),
+                      Gap(10),
+
+                      Text(
+                        '${language.movieDirector}: ${state.movieInfo?.movie!.director?.join(', ')}',
+                      ),
+                      Gap(10),
+
+                      Text(
+                        '${language.movieActor}: ${state.movieInfo?.movie!.actor?.join(', ')}',
+                      ),
+                      Gap(10),
+                      Text(
+                        '${language.category}: ${state.movieInfo?.movie!.category?.join(', ')}', // chỗ này gọi đến phương thức toString trong class Category
+                      ),
+
                       Gap(20),
                     ],
                   ),

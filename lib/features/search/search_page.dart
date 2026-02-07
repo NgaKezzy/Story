@@ -28,6 +28,12 @@ class _SearchPageState extends State<SearchPage> {
   final _searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    movieCubit.clearSearchMovie();
+  }
+
+  @override
   void dispose() {
     super.dispose();
     _searchController.dispose();
@@ -72,7 +78,7 @@ class _SearchPageState extends State<SearchPage> {
               // Text tìm kiếm với gradient
               Expanded(
                 child: DefaultTextfield(
-                  heightContainer: 50,
+                  heightContainer: 45,
                   controller: _searchController,
                   onChanged: (p0) {
                     if (_debounce?.isActive ?? false) {

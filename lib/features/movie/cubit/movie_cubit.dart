@@ -39,6 +39,10 @@ class MovieCubit extends HydratedCubit<MovieState> {
     getSeriesMovie();
   }
 
+  Future<void> clearSearchMovie() async {
+    emit(state.copyWith(movieSearchList: []));
+  }
+
   Future<bool> getNewMovieUpdate() async {
     final response = await movieRepositoryImpl.getNewMovieUpdate(
       PageMovie(page: 0),

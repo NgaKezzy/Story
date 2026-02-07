@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +9,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:story/core/di/di.dart';
 import 'package:story/core/language/cubit/language_cubit.dart';
 import 'package:story/core/routers/app_router.dart';
-import 'package:story/core/theme/app_theme.dart';
 import 'package:story/core/theme/cubit/theme_cubit.dart';
 import 'package:toastification/toastification.dart';
 import 'package:story/core/language/l10n/app_localizations.dart';
@@ -79,9 +77,11 @@ class MyApp extends StatelessWidget {
               locale: Locale(context.watch<LanguageCubit>().state.languageCode),
               debugShowCheckedModeBanner: false,
               routerConfig: AppRoutes().router,
-              theme: context.watch<ThemeCubit>().state.isDark
-                  ? AppTheme.darkTheme
-                  : AppTheme.lightTheme,
+              themeMode: context.watch<ThemeCubit>().state.isDark
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
+              theme: ThemeData.light(),
+              darkTheme: ThemeData.dark(),
             ),
           ),
         );
